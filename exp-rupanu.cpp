@@ -21,6 +21,16 @@ struct Node {
 	Node() : prev(this),next(this), link_num(1), data(0)  {
 		pthread_mutex_init ( &mutex, NULL);
 	}
+	Node(const Node& that) {
+		//Node *nn = new Node;
+		this->link_num = that.link_num;
+		this->data = that.data;
+		*this->prev = *that.prev;
+		*this->next = *that.next;
+		this->mutex = that.mutex;
+		//this = nn;
+	
+	}
 	Node(Node* prev, Node* next, int num, int value = 0)
 		: prev(prev)
 		, next(next)
